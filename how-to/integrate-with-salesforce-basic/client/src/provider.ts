@@ -1,7 +1,7 @@
 import {
 	connect,
+	SalesforceRestApiSearchResult,
 	type SalesforceConnection,
-	type SalesforceRestApiSearchResponse,
 	type SalesforceRestApiSObject
 } from "@openfin/salesforce";
 import { getCurrentSync, init as workspacePlatformInit } from "@openfin/workspace-platform";
@@ -89,7 +89,7 @@ async function init() {
 			const sfQuery = `FIND {${query}} IN ALL FIELDS RETURNING Contact(Department, Email, Id, Name, Phone, Title) LIMIT 10`;
 
 			const response = await salesforceConnection.executeApiRequest<
-				SalesforceRestApiSearchResponse<SalesforceRestApiSObject<SalesforceContact>>
+				SalesforceRestApiSearchResult<SalesforceRestApiSObject<SalesforceContact>>
 			>(`/services/data/vXX.X/search?q=${encodeURIComponent(sfQuery)}`);
 
 			if (response.data?.searchRecords?.length) {

@@ -20,7 +20,7 @@
 	"license": "SEE LICENSE IN LICENSE.MD",
 	"dependencies": {
 		"@openfin/core": "^28.72.17",
-		"@openfin/salesforce": "^2.1.5",
+		"@openfin/salesforce": "^2.2.0-beta.3",
 		"@openfin/workspace": "10.3.11",
 		"@openfin/workspace-platform": "10.3.11"
 	},

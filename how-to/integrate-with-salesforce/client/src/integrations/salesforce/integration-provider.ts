@@ -1,11 +1,11 @@
 import {
 	connect,
-	ConnectionError,
+	AuthorizationError,
 	enableLogging,
-	SalesforceRestApiQueryResponse,
 	SalesforceRestApiSObject,
 	type SalesforceConnection,
-	type SalesforceRestApiSearchResponse
+	type SalesforceRestApiSearchResult,
+	type SalesforceRestApiQueryResult
 } from "@openfin/salesforce";
 import {
 	ButtonStyle,
@@ -406,7 +406,7 @@ export class SalesforceIntegrationProvider implements IntegrationModule<Salesfor
 					lastResponse.respond(homeResults);
 				} catch (err) {
 					await this.closeConnection();
-					if (err instanceof ConnectionError) {
+					if (err instanceof AuthorizationError) {
 						this._lastResponse.respond([this.getReconnectSearchResult(query, filters)]);
 					}
 					this._logger.error("Error retrieving Salesforce search results", err);
@@ -561,7 +561,7 @@ export class SalesforceIntegrationProvider implements IntegrationModule<Salesfor
 		}
 
 		const batchedResults = await this.getBatchedResults<
-			| SalesforceRestApiSearchResponse<SalesforceRestApiSObject<SalesforceSearchResult>>
+			| SalesforceRestApiSearchResult<SalesforceRestApiSObject<SalesforceSearchResult>>
 			| SalesforceFeedElementPage
 		>(batch);
 
@@ -953,7 +953,7 @@ export class SalesforceIntegrationProvider implements IntegrationModule<Salesfor
 
 		if (batch.length > 0) {
 			const batchedResults = await this.getBatchedResults<
-				SalesforceRestApiQueryResponse<SalesforceRestApiSObject<SalesforceSearchResult>>
+				SalesforceRestApiQueryResult<SalesforceRestApiSObject<SalesforceSearchResult>>
 			>(batch);
 			for (let i = 0; i < referenceMappings.length; i++) {
 				if (batchedResults[i].records?.length > 0) {
