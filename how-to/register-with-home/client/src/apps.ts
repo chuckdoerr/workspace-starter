@@ -76,10 +76,17 @@ export async function getApps(): Promise<App[]> {
 	console.log("Requesting apps.");
 	try {
 		const settings = await getSettings();
-		const apps = await getRestEntries(
-			settings?.appProvider?.appsSourceUrl,
-			settings?.appProvider?.includeCredentialOnSourceRequest
-		);
+		let apps: App[] = [];
+
+		if (settings?.appProvider?.appsSourceUrls) {
+			for (const url of settings.appProvider.appsSourceUrls) {
+				const loaded = await getRestEntries(
+					url,
+					settings?.appProvider?.includeCredentialOnSourceRequest
+				);
+				apps = apps.concat(loaded);
+			}
+		}
 		return await validateEntries(apps);
 	} catch (err) {
 		console.error("Error retrieving apps. Returning empty list.", err);

@@ -4,18 +4,6 @@
 	"description": "Used to provide a common directory to host assets that apply across examples",
 	"main": "index.js",
 	"scripts": {
-		"dos": "desktop-owner-settings.bat && (npm run kill)",
-		"kill": "node ./scripts/kill.mjs",
-		"client": "node ./scripts/launch.mjs",
-		"client-watch": "node ./scripts/launch.mjs http://localhost:8080/manifest.fin.json ./public/*.fin.json",
-		"secondclient": "node ./scripts/launch.mjs http://localhost:8080/second.manifest.fin.json",
-		"thirdclient": "node ./scripts/launch.mjs http://localhost:8080/third.manifest.fin.json",
-		"fourthclient": "node ./scripts/launch.mjs http://localhost:8080/fourth.manifest.fin.json",
-		"build": "npm run build-client",
-		"build-client": "webpack build --config ./client/webpack.config.js --mode=development",
-		"build-client-prod": "webpack build --config ./client/webpack.config.js --mode=production",
-		"setup": "cd ../../ && npm install && cd how-to/common && npm run build",
-		"validate": "npm --prefix ../../ run validate"
 	},
 	"author": "john.mandia@openfin.co",
 	"contributors": [

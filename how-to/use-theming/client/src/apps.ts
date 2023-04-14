@@ -95,7 +95,7 @@ export const developerContent: App = {
 	manifestType: "snapshot",
 	description:
 		"Shows a collection of OpenFin developer pages and provides an example of how you can present a pre-built page as a launch target in OpenFin Home. This entry has a manifest type of 'snapshot'.",
-	manifest: `${webRoot}common/snapshots/snapshot.json`,
+	manifest: `${webRoot}common/snapshots/snapshot-developer.json`,
 	icons: [{ src: `${webRoot}common/images/icon-blue.png` }],
 	contactEmail: "contact@example.com",
 	supportEmail: "support@example.com",

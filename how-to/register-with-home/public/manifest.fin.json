@@ -49,7 +49,11 @@
 	},
 	"customSettings": {
 		"appProvider": {
-			"appsSourceUrl": "http://localhost:8080/common/apps.json",
+			"appsSourceUrls": [
+				"http://localhost:8080/common/apps-contact.json",
+				"http://localhost:8080/common/apps-native.json",
+				"http://localhost:8080/common/apps-tools.json"
+			],
 			"includeCredentialOnSourceRequest": "include",
 			"manifestTypes": ["view", "snapshot", "manifest", "external"]
 		},

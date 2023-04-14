@@ -8,7 +8,7 @@ interface HomeProvider {
 }
 
 interface AppProvider {
-	appsSourceUrl: string;
+	appsSourceUrls: string[];
 	includeCredentialOnSourceRequest?: "omit" | "same-origin" | "include";
 	manifestTypes?: string[];
 }

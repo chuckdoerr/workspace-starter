@@ -1,0 +1,355 @@
+[
+	{
+		"appId": "interop-broadcast-view",
+		"name": "interop-broadcast-view",
+		"title": "Context using Interop API",
+		"description": "This is an example of setting and listening to context using the interop api and seeing a code sample of how to do it.",
+		"manifest": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/interop/interop-api/context/interop-broadcast-view.json",
+		"manifestType": "view",
+		"icons": [
+			{
+				"src": "http://localhost:8080/common/images/icon-blue.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [
+			{
+				"src": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/interop/images/previews/view-context-interop-api.png"
+			}
+		],
+		"tags": ["view", "interop", "tools"]
+	},
+	{
+		"appId": "interop-intent-view",
+		"name": "interop-intent-view",
+		"title": "Intents using Interop API",
+		"description": "This is an example of firing and listening to intents using the interop api and seeing a code sample of how to do it. Multiple instances can be launched.",
+		"manifest": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/interop/interop-api/intent/interop-intent-multi-view.json",
+		"manifestType": "view",
+		"icons": [
+			{
+				"src": "http://localhost:8080/common/images/icon-blue.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [
+			{
+				"name": "StartCall",
+				"displayName": "Start a Call",
+				"contexts": ["fdc3.contact", "fdc3.contactList"],
+				"customConfig": {}
+			},
+			{
+				"name": "StartChat",
+				"displayName": "Start a Chat",
+				"contexts": ["fdc3.contact", "fdc3.contactList"],
+				"customConfig": {}
+			},
+			{
+				"name": "ViewChart",
+				"displayName": "View Chart",
+				"contexts": ["fdc3.instrument", "fdc3.instrumentList", "fdc3.portfolio", "fdc3.position"],
+				"customConfig": {}
+			},
+			{
+				"name": "ViewContact",
+				"displayName": "View Contact Details",
+				"contexts": ["fdc3.contact"],
+				"customConfig": {}
+			},
+			{
+				"name": "ViewQuote",
+				"displayName": "View Quote",
+				"contexts": ["fdc3.instrument"],
+				"customConfig": {}
+			},
+			{
+				"name": "ViewNews",
+				"displayName": "View News",
+				"contexts": [
+					"fdc3.country",
+					"fdc3.instrument",
+					"fdc3.instrumentList",
+					"fdc3.organization",
+					"fdc3.portfolio"
+				],
+				"customConfig": {}
+			},
+			{
+				"name": "ViewAnalysis",
+				"displayName": "View Analysis",
+				"contexts": ["fdc3.instrument", "fdc3.organization", "fdc3.portfolio"],
+				"customConfig": {}
+			},
+			{
+				"name": "ViewInstrument",
+				"displayName": "View Instrument Details",
+				"contexts": ["fdc3.instrument"],
+				"customConfig": {}
+			}
+		],
+		"images": [
+			{
+				"src": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/interop/images/previews/view-intents-interop-api.png"
+			}
+		],
+		"tags": ["view", "interop", "intent", "openfin", "tools"]
+	},
+	{
+		"appId": "app-definition-builder",
+		"name": "app-definition-builder",
+		"title": "App Definition Builder",
+		"description": "A developer tool to help build an app definition",
+		"manifest": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/app/app-definition-builder/app-definition-builder-view.json",
+		"manifestType": "view",
+		"icons": [{ "src": "http://localhost:8080/common/images/icon-blue.png" }],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [
+			{
+				"name": "CreateAppDefinition",
+				"displayName": "Create an App Definition",
+				"contexts": ["openfin.app"],
+				"customConfig": {}
+			}
+		],
+		"images": [
+			{
+				"src": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/app/images/previews/app-definition-builder.png"
+			}
+		],
+		"tags": ["view", "app", "tools"]
+	},
+	{
+		"appId": "theme-definition-builder",
+		"name": "theme-definition-builder",
+		"title": "Theme Definition Builder",
+		"description": "A tool to help in the building of a theme.",
+		"manifest": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/branding/theme-definition-builder/theme-definition-builder-view.json",
+		"manifestType": "view",
+		"icons": [{ "src": "http://localhost:8080/common/images/icon-blue.png" }],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [
+			{
+				"src": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/branding/images/previews/theme-definition-builder.png"
+			}
+		],
+		"tags": ["view", "theme", "tools"]
+	},
+	{
+		"appId": "starter-style-guide",
+		"name": "starter-style-guide",
+		"title": "Starter Style Guide",
+		"description": "A style guide used to aid in the building of workspace starter samples.",
+		"manifest": "http://localhost:8080/common/style/style-view.json",
+		"manifestType": "view",
+		"icons": [{ "src": "http://localhost:8080/common/images/icon-blue.png" }],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [
+			{
+				"src": "http://localhost:8080/common/images/previews/starter-style-guide.png"
+			}
+		],
+		"tags": ["view", "style", "tools"]
+	},
+	{
+		"appId": "openfin-versions-workspace",
+		"name": "openfin-versions-workspace",
+		"title": "OpenFin Versions - Workspace",
+		"description": "Launch the OpenFin Workspace Versions page. This launches the url as a view to demonstrate the capability. This is an example of a inline-view entry in the app catalog.",
+		"manifest": {
+			"url": "https://developer.openfin.co/versions/?product=Runtime#/?product=Workspace",
+			"name": "openfin-versions"
+		},
+		"manifestType": "inline-view",
+		"icons": [
+			{
+				"src": "http://localhost:8080/common/images/icon-blue.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [],
+		"tags": ["versions", "view"]
+	},
+	{
+		"appId": "openfin-versions-runtime",
+		"name": "openfin-versions-runtime",
+		"title": "OpenFin Versions - Runtime",
+		"description": "Launch the OpenFin Runtime Versions page. This launches in a classic window to demonstrate the capability. This is a example of an inline-window entry in the app catalog.",
+		"manifest": {
+			"url": "https://developer.openfin.co/versions/?product=Runtime"
+		},
+		"manifestType": "inline-window",
+		"icons": [
+			{
+				"src": "http://localhost:8080/common/images/icon-blue.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [],
+		"tags": ["versions", "window"]
+	},
+	{
+		"appId": "openfin-versions-integrations",
+		"name": "openfin-versions-integrations",
+		"title": "OpenFin Versions - Integrations",
+		"description": "Launch the OpenFin Integrations Versions page. This launches the url into the desktop browser to demonstrate the capability. This is an example of a desktop-browser entry in the app catalog.",
+		"manifest": "https://developer.openfin.co/versions/?product=Runtime#/?product=Integrations",
+		"manifestType": "desktop-browser",
+		"icons": [
+			{
+				"src": "http://localhost:8080/common/images/icon-blue.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [],
+		"tags": ["versions", "desktop-browser"]
+	},
+	{
+		"appId": "page-layout",
+		"name": "page-layout",
+		"title": "Page Layout Tool",
+		"description": "A tool to help in the building of a page.",
+		"manifest": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/layout/views/page-layout-snapshot.json",
+		"manifestType": "snapshot",
+		"icons": [{ "src": "http://localhost:8080/common/images/icon-blue.png" }],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [
+			{
+				"src": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/layout/images/previews/page-layout.png"
+			}
+		],
+		"tags": ["view", "page", "tools"]
+	},
+	{
+		"appId": "notifications-generator",
+		"name": "notifications-studio",
+		"title": "OpenFin Notifications Studio",
+		"manifestType": "manifest",
+		"description": "Notifications Studio: This is OpenFin's tool for demonstrating the power of our Notification Center. Use it to create local notifications or use some of the examples shown in our Catalog. Experiment with our features and see the power that OpenFin Notification Center can bring to your applications.",
+		"manifest": "https://cdn.openfin.co/studio/notification/app.json",
+		"icons": [
+			{
+				"src": "https://cdn.openfin.co/demos/notifications/generator/images/icon-blue.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [
+			{
+				"src": "http://localhost:8080/common/images/previews/openfin-notification-studio.png"
+			}
+		],
+		"tags": ["hero", "manifest", "tools"]
+	},
+	{
+		"appId": "openfin-process-manager",
+		"name": "openfin-process-manager",
+		"title": "OpenFin Process Manager",
+		"manifestType": "manifest",
+		"description": "Process Manager: This is OpenFin's tool for helping developers build OpenFin Applications. It lets you see the OpenFin applications that are running, the performance of the applications (memory and cpu) and easy access to the dev tools for the Windows of your application.",
+		"manifest": "https://cdn.openfin.co/release/apps/openfin/processmanager/app.json",
+		"icons": [
+			{
+				"src": "https://cdn.openfin.co/release/apps/openfin/processmanager/2.0.2/ofpm-icon.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [
+			{
+				"src": "http://localhost:8080/common/images/previews/openfin-process-manager.png"
+			}
+		],
+		"tags": ["hero", "manifest", "tools"]
+	},
+	{
+		"appId": "openfin-developer-page",
+		"name": "openfin-developer-page",
+		"title": "OpenFin Developer Docs",
+		"manifestType": "snapshot",
+		"description": "Shows a collection of OpenFin developer pages and provides an example of how you can present a pre-built page as a launch target in OpenFin Home. This entry has a manifest type of 'snapshot'.",
+		"manifest": "http://localhost:8080/common/snapshots/snapshot-developer.json",
+		"icons": [
+			{
+				"src": "http://localhost:8080/common/images/icon-blue.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [
+			{
+				"src": "http://localhost:8080/common/images/previews/openfin-page-docs.png"
+			}
+		],
+		"tags": ["page", "developer"]
+	},
+	{
+		"appId": "getting-started",
+		"name": "getting-started",
+		"title": "Getting Started Guide",
+		"description": "A collection of information and tools that help you get started with OpenFin Workspace.",
+		"manifest": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/common/snapshots/snapshot-getting-started.json",
+		"manifestType": "snapshot",
+		"icons": [{ "src": "http://localhost:8080/common/images/icon-blue.png" }],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [],
+		"tags": ["page", "snapshot", "tools"]
+	},
+	{
+		"appId": "analytics-viewer",
+		"name": "analytics-viewer",
+		"title": "Analytics Viewer",
+		"description": "This analytics viewer acts as a basic view to see the analytics events generated by the platform and workspace components if the events are published to the watched app channel.",
+		"manifest": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/analytics/views/analytics-viewer/analytics-viewer-view.json",
+		"manifestType": "view",
+		"icons": [
+			{
+				"src": "http://localhost:8080/common/images/icon-blue.png"
+			}
+		],
+		"contactEmail": "contact@example.com",
+		"supportEmail": "support@example.com",
+		"publisher": "OpenFin",
+		"intents": [],
+		"images": [
+			{
+				"src": "https://built-on-openfin.github.io/dev-extensions/extensions/vnext/analytics/views/analytics-viewer/analytics-viewer.png"
+			}
+		],
+		"tags": ["view", "analytics", "tools"]
+	}
+]

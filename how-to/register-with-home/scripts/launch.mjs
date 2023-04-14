@@ -1,6 +1,10 @@
-import chokidar from 'chokidar';
+/* eslint-disable unicorn/no-process-exit */
+/**
+ * This script will launch an OpenFin application.
+ * It uses the OpenFin NodeJS adapter to launch the url specified on the command line.
+ * Pressing Ctrl+C/Command+C will terminate the application.
+ */
 import { connect, launch } from 'openfin-adapter';
-import path from 'path';
 
 async function launchFromNode(manifestUrl, exitMethod) {
 	try {
@@ -23,19 +27,15 @@ async function launchFromNode(manifestUrl, exitMethod) {
 	}
 }
 
-async function run(manifestUrl, manifestFiles) {
+async function run(manifestUrl) {
 	try {
 		let quitRequested = false;
-		let restartRequested = false;
 		let quit;
 
 		const fin = await launchFromNode(manifestUrl, () => {
 			console.log('Disconnected');
-			if (!restartRequested) {
-				console.log('Exiting');
-				// eslint-disable-next-line unicorn/no-process-exit
-				process.exit();
-			}
+			console.log('Exiting');
+			process.exit();
 		});
 
 		const manifest = await fin.System.fetchManifest(manifestUrl);
@@ -79,20 +79,6 @@ async function run(manifestUrl, manifestFiles) {
 			process.exit();
 		});
 
-		// Monitor any manifest files for changes, and relaunch if changed
-		if (manifestFiles) {
-			console.log('Watch Files', manifestFiles);
-			chokidar.watch(manifestFiles).once('change', async () => {
-				console.log('Manifest changed, restarting');
-				restartRequested = true;
-				await quit();
-
-				console.log('Restart platform');
-				process.removeAllListeners();
-				await run(manifestUrl, manifestFiles);
-				restartRequested = false;
-			});
-		}
 		console.log(`You successfully connected to the manifest: ${manifestUrl}`);
 		console.log(`Please wait while the sample loads.`);
 		console.log(`If using browser use the Quit option from the main menu.`);
@@ -105,22 +91,5 @@ async function run(manifestUrl, manifestFiles) {
 (async () => {
 	const launchArgs = process.argv.slice(2);
 
-	let manifestUrl = 'http://localhost:8080/manifest.fin.json';
-	let manifestFiles;
-	let delayStartup;
-
-	if (launchArgs.length > 0) {
-		manifestUrl = launchArgs[0];
-	}
-
-	if (launchArgs.length > 1) {
-		// If we have manifest files to watch we are in dev mode, so we perform a
-		// delayed startup to allow the live server to startup, to serve the manifest
-		manifestFiles = path.resolve(path.join(process.env.INIT_CWD, launchArgs[1]));
-		delayStartup = 2000;
-	}
-
-	setTimeout(async () => {
-		await run(manifestUrl, manifestFiles);
-	}, delayStartup ?? 0);
+	await run(launchArgs.length > 0 ? launchArgs[0] : 'http://localhost:8080/manifest.fin.json');
 })();
