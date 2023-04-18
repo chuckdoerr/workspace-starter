@@ -68,11 +68,11 @@ async function initializeDOM(): Promise<void> {
 
 		// Wire up the button click event listeners
 		registerButton.addEventListener("click", async () => {
+			registerButton.disabled = true;
 			homeRegistration = await register(PLATFORM_ID, PLATFORM_TITLE, PLATFORM_ICON);
 			showButton.disabled = false;
 			hideButton.disabled = false;
 			deregisterButton.disabled = false;
-			registerButton.disabled = true;
 			queryInput.disabled = false;
 			goButton.disabled = false;
 		});
