@@ -1,0 +1,19 @@
+[
+	"scripts/dos.mjs",
+	"scripts/kill.mjs",
+	"scripts/launch.mjs",
+	"public/favicon.ico",
+	"public/common/apps-contact.json",
+	"public/common/apps-native.json",
+	"public/common/apps-tools.json",
+	"public/common/dos.json",
+	"public/common/images/icon-blue.png",
+	"public/common/images/icon-notepad.png",
+	"public/common/snapshots/snapshot-contact-overview.json",
+	"public/common/snapshots/snapshot-developer.json",
+	"public/common/style/app.css",
+	"public/common/style/style-changed-preload.js",
+	"public/common/style/style-view.json",
+	"public/common/style/style.html",
+	"public/common/views/contact/**/*"
+]

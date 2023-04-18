@@ -1,30 +1,61 @@
-import { init as workspacePlatformInit, BrowserInitConfig } from "@openfin/workspace-platform";
-import { deregister, register, show } from "./home";
+import type OpenFin from "@openfin/core";
+import { Home } from "@openfin/workspace";
+import { init } from "@openfin/workspace-platform";
+import { deregister, register } from "./home";
+import type { CustomSettings } from "./shapes";
 
 window.addEventListener("DOMContentLoaded", async () => {
+	// Load the settings from the manifest
+	const settings = await getManifestCustomSettings();
+
+	// When the platform api is ready we bootstrap the platform.
 	const platform = fin.Platform.getCurrentSync();
-	await platform.once("platform-api-ready", async () => bootstrap());
-	await initialisePlatform();
+	await platform.once("platform-api-ready", async () => platformBootstrap(settings));
+
+	// The DOM is ready so initialize the platform
+	// Provide some default icons for the browser windows
+	console.log("Initialising workspace platform");
+	await init({
+		browser: {
+			defaultWindowOptions: {
+				icon: settings.homeProvider?.icon,
+				workspacePlatform: {
+					pages: null,
+					favicon: settings.homeProvider?.icon
+				}
+			}
+		}
+	});
 });
 
-export async function initialisePlatform() {
-	console.log("Initialising platform");
-	const browser: BrowserInitConfig = {};
+/**
+ * Bring the platform to life.
+ * @param settings The settings.
+ */
+export async function platformBootstrap(settings: CustomSettings): Promise<void> {
+	console.log("Initialising the bootstrapper");
 
-	await workspacePlatformInit({
-		browser
+	// Register with home and show it
+	await register(settings);
+	await Home.show();
+
+	// When the platform requests to be close we deregister from home and quit
+	const providerWindow = fin.Window.getCurrentSync();
+	await providerWindow.once("close-requested", async () => {
+		await deregister(settings);
+		await fin.Platform.getCurrentSync().quit();
 	});
 }
 
-export async function bootstrap() {
-	// you can kick off your bootstrapping process here where you may decide to prompt for authentication,
-	// gather reference data etc before starting workspace and interacting with it.
-	console.log("Initialising the bootstrapper");
-	await register();
-	await show();
-	const providerWindow = fin.Window.getCurrentSync();
-	await providerWindow.once("close-requested", async (event) => {
-		await deregister();
-		await fin.Platform.getCurrentSync().quit();
-	});
+/**
+ * Read the custom settings from the manifest.fin.json
+ * @returns The custom settings.
+ */
+export async function getManifestCustomSettings(): Promise<CustomSettings> {
+	// Get the manifest for the current application
+	const app = await fin.Application.getCurrent();
+
+	// Extract the custom settings for this application
+	const manifest: OpenFin.Manifest & { customSettings?: CustomSettings } = await app.getManifest();
+	return manifest.customSettings ?? {};
 }

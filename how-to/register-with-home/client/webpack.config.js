@@ -17,6 +17,12 @@ module.exports = {
 	},
 	output: {
 		filename: 'provider.bundle.js',
-		path: path.resolve(__dirname, '..', 'public', 'js')
+		path: path.resolve(__dirname, '..', 'public', 'js'),
+		library: {
+			type: "module"
+		}
+	},
+	experiments: {
+		outputModule: true
 	}
 };

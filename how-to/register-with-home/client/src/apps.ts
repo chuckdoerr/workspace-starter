@@ -1,17 +1,38 @@
 import type { App } from "@openfin/workspace";
-import { getSettings } from "./settings";
+import type { CustomSettings } from "./shapes";
 
-async function getRestEntries(url: string, credentials?: "omit" | "same-origin" | "include"): Promise<App[]> {
-	const options = credentials !== undefined ? { credentials } : undefined;
-	if (url === undefined) {
+/**
+ * Load the apps from the json feeds configured in the custom settings.
+ * @param settings The configured settings.
+ * @returns The list of apps.
+ */
+export async function getApps(settings: CustomSettings): Promise<App[]> {
+	console.log("Requesting apps.");
+	try {
+		let apps: App[] = [];
+
+		if (settings?.appProvider?.appsSourceUrls) {
+			for (const url of settings.appProvider.appsSourceUrls) {
+				const response = await fetch(url, { credentials: "include" });
+				const json = await response.json();
+				apps = apps.concat(json as App[]);
+			}
+		}
+
+		return await validateEntries(settings, apps);
+	} catch (err) {
+		console.error("Error retrieving apps. Returning empty list.", err);
 		return [];
 	}
-	const response = await fetch(url, options);
-	const json = await response.json();
-	return json as App[];
 }
 
-async function validateEntries(apps: App[]) {
+/**
+ * Validate that the apps have the correct permissions enabled.
+ * @param settings The configured settings.
+ * @param apps The apps the validate.
+ * @returns The list of validated apps.
+ */
+async function validateEntries(settings: CustomSettings, apps: App[]): Promise<App[]> {
 	let canLaunchExternalProcessResponse;
 
 	try {
@@ -24,7 +45,6 @@ async function validateEntries(apps: App[]) {
 	const canLaunchExternalProcess = canLaunchExternalProcessResponse?.granted;
 
 	let canDownloadAppAssetsResponse;
-
 	try {
 		canDownloadAppAssetsResponse = await fin.System.queryPermissionForCurrentContext("System.downloadAsset");
 	} catch (error) {
@@ -35,7 +55,6 @@ async function validateEntries(apps: App[]) {
 
 	const validatedApps: App[] = [];
 	const rejectedAppIds = [];
-	const settings = await getSettings();
 	const appAssetTag = "appasset";
 	const supportedManifestTypes = settings?.appProvider?.manifestTypes;
 
@@ -70,26 +89,4 @@ async function validateEntries(apps: App[]) {
 	}
 
 	return validatedApps;
-}
-
-export async function getApps(): Promise<App[]> {
-	console.log("Requesting apps.");
-	try {
-		const settings = await getSettings();
-		let apps: App[] = [];
-
-		if (settings?.appProvider?.appsSourceUrls) {
-			for (const url of settings.appProvider.appsSourceUrls) {
-				const loaded = await getRestEntries(
-					url,
-					settings?.appProvider?.includeCredentialOnSourceRequest
-				);
-				apps = apps.concat(loaded);
-			}
-		}
-		return await validateEntries(apps);
-	} catch (err) {
-		console.error("Error retrieving apps. Returning empty list.", err);
-		return [];
-	}
 }
