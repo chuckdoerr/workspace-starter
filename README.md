@@ -5,7 +5,7 @@
 
 ## OpenFin Workspace 12.0.0
 
-The OpenFin Workspace is a full-featured work environment designed to improve the way you get t`hings done. Built on a secure browsing experience powered by Chromium, the core offering includes a smart digital assistant, a powerful web browser built to support modern application workflows out-of-the-box, a store to aid in the discovery of content and a notification system to surface important moments while they're still important.
+The OpenFin Workspace is a full-featured work environment designed to improve the way you get things done. Built on a secure browsing experience powered by Chromium, the core offering includes a smart digital assistant, a powerful web browser built to support modern application workflows out-of-the-box, a store to aid in the discovery of content and a notification system to surface important moments while they're still important.
 
 [Learn more about openfin.co/workspace](https://www.openfin.co/workspace/)
 
